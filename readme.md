@@ -1,0 +1,1 @@
+Las imagenes demo se pueden encontrar en demo_images folder
