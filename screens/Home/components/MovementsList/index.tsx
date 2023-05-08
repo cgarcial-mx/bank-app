@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import Text from '@components/Text';
 import Colors from '@constants/Colors';
-import { Movements } from '@types/Models';
+import { type Movements } from '@types/Models';
 import Item from '../Item';
 import Spacer from '@components/Spacer';
 import Button from '@components/Button';

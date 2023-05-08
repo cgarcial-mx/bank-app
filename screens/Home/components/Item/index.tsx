@@ -1,16 +1,28 @@
 import Spacer from '@components/Spacer';
 import Text from '@components/Text';
 import Colors from '@constants/Colors';
+import { useNavigation } from '@react-navigation/native';
 import { Movements } from '@types/Models';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 type ItemProps = {
   item: Movements;
 };
 
 const Item: React.FC<ItemProps> = ({ item }) => {
+  const navigation = useNavigation();
+
+  const goToDetails = () => {
+    navigation.navigate('MovementDetails', {
+      product: item.product,
+      points: item.points,
+      image: item.image,
+      createdAt: item.createdAt,
+    });
+  };
+
   return (
-    <View style={styles.root}>
+    <Pressable style={styles.root} onPress={goToDetails}>
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text weight="bold">{item.product}</Text>
@@ -28,7 +40,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
       </View>
       <Spacer width={15} />
       <Text weight="bold" size={18}>{`>`}</Text>
-    </View>
+    </Pressable>
   );
 };
 
