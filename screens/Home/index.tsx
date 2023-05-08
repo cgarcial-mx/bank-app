@@ -1,12 +1,26 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Header from './components/Header';
+import PointsCard from './components/Header/PointsCard';
+import Colors from '@constants/Colors';
+import Spacer from '@components/Spacer';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView>
-      <View></View>
+    <SafeAreaView style={styles.root}>
+      <Header />
+      <Spacer height={20} />
+      <PointsCard />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: Colors.backgroundPage,
+    paddingHorizontal: 20,
+  },
+});
 
 export default HomeScreen;

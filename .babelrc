@@ -1,0 +1,24 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "extensions": [".ts", ".tsx"],
+        "alias": {
+          "@api": "./api",
+          "@assets": "./assets",
+          "@components": "./components",
+          "@constants": "./constants",
+          "@environments": "./environments",
+          "@hooks": "./hooks",
+          "@types": "./types",
+          "@navigations": "./navigations",
+          "@screens": "./screens",
+          "@store": "./store",
+          "@utils": "./utils"
+        }
+      }
+    ]
+  ]
+}
