@@ -1,9 +1,10 @@
-import { Button, FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import Text from '@components/Text';
 import Colors from '@constants/Colors';
 import { Movements } from '@types/Models';
 import Item from '../Item';
 import Spacer from '@components/Spacer';
+import Button from '@components/Button';
 
 type MovementsListProps = {
   list: Array<Movements>;
@@ -19,6 +20,7 @@ const MovementsList: React.FC<MovementsListProps> = ({ list }) => {
       <Text weight="bold" color={Colors.gray}>
         TUS MOVIMIENTOS
       </Text>
+      <Spacer height={20} />
       <View style={styles.card}>
         <FlatList
           data={list}
@@ -26,11 +28,12 @@ const MovementsList: React.FC<MovementsListProps> = ({ list }) => {
           renderItem={_renderItem}
           style={styles.list}
           ItemSeparatorComponent={() => <Spacer height={8} />}
+          showsVerticalScrollIndicator={false}
         />
       </View>
       <Spacer height={43} />
       <View style={{ marginBottom: 40 }}>
-        <Button title="Ver todos" onPress={() => {}} />
+        <Button title="Todos" onPress={() => {}} />
       </View>
     </View>
   );

@@ -1,5 +1,6 @@
 import Spacer from '@components/Spacer';
 import Text from '@components/Text';
+import Colors from '@constants/Colors';
 import { Movements } from '@types/Models';
 import { Image, StyleSheet, View } from 'react-native';
 
@@ -8,7 +9,6 @@ type ItemProps = {
 };
 
 const Item: React.FC<ItemProps> = ({ item }) => {
-  console.log({ item });
   return (
     <View style={styles.root}>
       <Image source={{ uri: item.image }} style={styles.image} />
@@ -16,7 +16,14 @@ const Item: React.FC<ItemProps> = ({ item }) => {
         <Text weight="bold">{item.product}</Text>
         <Text size={12}>{item.createdAt}</Text>
       </View>
-      <View>
+      <View style={styles.pointsContainer}>
+        <Text
+          weight="bold"
+          size={16}
+          color={item.isRedeemed ? Colors.red : Colors.green}
+        >
+          {item.isRedeemed ? '- ' : '+ '}
+        </Text>
         <Text weight="bold">{item.points}</Text>
       </View>
       <Spacer width={15} />
@@ -36,6 +43,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 5,
     marginLeft: 10,
+  },
+  pointsContainer: {
+    flexDirection: 'row',
   },
   image: {
     width: 55,

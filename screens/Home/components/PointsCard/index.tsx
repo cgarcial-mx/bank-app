@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import Text from '@components/Text';
 import Colors from '@constants/Colors';
 import Spacer from '@components/Spacer';
+import { getDecimalString } from '@utils/parsers';
 
 type PointsCardProps = {
   points: number;
@@ -19,8 +20,12 @@ const PointsCard: React.FC<PointsCardProps> = ({ points = 0 }) => {
           Diciembre
         </Text>
         <Spacer height={7} />
-        <Text weight="bold" size={32} color="white" alignment="center">
-          10,000 pts
+        {/**
+         * Estoy usando el fontSize en 28 porque el resultado de los puntos
+         * es muy largo y no cabe en mi resolución, aun que el correcto sería 32
+         */}
+        <Text weight="bold" size={28} color="white" alignment="center">
+          {getDecimalString(points)} pts
         </Text>
         <Spacer height={30} />
       </View>
