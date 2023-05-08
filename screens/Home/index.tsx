@@ -4,6 +4,7 @@ import Header from './components/Header';
 import PointsCard from './components/Header/PointsCard';
 import Colors from '@constants/Colors';
 import Spacer from '@components/Spacer';
+import MovementsList from './components/Header/MovementsList';
 
 const HomeScreen = () => {
   return (
@@ -11,6 +12,8 @@ const HomeScreen = () => {
       <Header />
       <Spacer height={20} />
       <PointsCard />
+      <Spacer height={20} />
+      <MovementsList />
     </SafeAreaView>
   );
 };
