@@ -12,7 +12,6 @@ describe('fetchData', () => {
     fetchMock.mockResponseOnce(JSON.stringify(mockResponse));
 
     const result = await getMovements();
-    console.log(result);
 
     expect(fetchMock).toHaveBeenCalledWith(API_URL);
     expect(result[0]).toEqual(mock);
