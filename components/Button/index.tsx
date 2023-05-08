@@ -14,6 +14,7 @@ const Button = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   root: {
+    flex: 1,
     backgroundColor: Colors.primary,
     borderRadius: 10,
     padding: 14,

@@ -9,16 +9,26 @@ import { useCallback, useMemo, useState } from 'react';
 import { getMovements } from '@api/resolvers';
 import { Movements } from '@types/Models';
 import { useFocusEffect } from '@react-navigation/native';
-import Text from '@components/Text';
 
 const HomeScreen = () => {
   const [movements, setMovements] = useState<Array<Movements>>([]);
-
+  const [listType, setListType] = useState<'all' | 'redeemed' | 'earned'>(
+    'all',
+  );
   const points = useMemo(() => {
     return movements.reduce((acc, item) => {
       return item.isRedeemed ? acc - item.points : acc + item.points;
     }, 0);
   }, [movements]);
+
+  const filteredMovements = useMemo(() => {
+    return movements.filter((item) => {
+      if (listType === 'all') {
+        return true;
+      }
+      return item.isRedeemed === (listType === 'redeemed');
+    });
+  }, [movements, listType]);
 
   useFocusEffect(
     useCallback(() => {
@@ -39,7 +49,11 @@ const HomeScreen = () => {
       <Spacer height={20} />
       <PointsCard points={points} />
       <Spacer height={20} />
-      <MovementsList list={movements} />
+      <MovementsList
+        list={filteredMovements}
+        listType={listType}
+        setListType={setListType}
+      />
     </SafeAreaView>
   );
 };

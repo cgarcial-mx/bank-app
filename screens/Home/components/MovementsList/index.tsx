@@ -8,9 +8,15 @@ import Button from '@components/Button';
 
 type MovementsListProps = {
   list: Array<Movements>;
+  listType?: 'all' | 'redeemed' | 'earned';
+  setListType?: (type: 'all' | 'redeemed' | 'earned') => void;
 };
 
-const MovementsList: React.FC<MovementsListProps> = ({ list }) => {
+const MovementsList: React.FC<MovementsListProps> = ({
+  list,
+  listType,
+  setListType,
+}) => {
   const _renderItem = ({ item }) => {
     return <Item item={item} />;
   };
@@ -32,9 +38,20 @@ const MovementsList: React.FC<MovementsListProps> = ({ list }) => {
         />
       </View>
       <Spacer height={43} />
-      <View style={{ marginBottom: 40 }}>
-        <Button title="Todos" onPress={() => {}} />
-      </View>
+      {listType !== 'all' && (
+        <View style={styles.buttonContainer}>
+          <Button title="Todos" onPress={() => setListType('all')} />
+        </View>
+      )}
+      {listType === 'all' && (
+        <View style={styles.buttonContainer}>
+          {/* Los botones de ganados y canjeados tiene otro tamaño de letra y padding, no respetan el design system, decidí conservarlo como el que dice todos. */}
+          <Button title="Ganados" onPress={() => setListType('earned')} />
+          <Spacer width={13} />
+          <Button title="Canjeados" onPress={() => setListType('redeemed')} />
+        </View>
+      )}
+      <Spacer height={40} />
     </View>
   );
 };
@@ -48,6 +65,10 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
