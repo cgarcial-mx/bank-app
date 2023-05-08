@@ -1,11 +1,11 @@
 import { type Movements } from '@types/Models';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
+dayjs.locale('es');
 
 export const createAdaptedMovementsList = (
   movements: Array<MovementsListResponse>,
 ): Array<Movements> => {
-  dayjs.locale('es');
   return movements.map((movement) => {
     return {
       id: movement.id,

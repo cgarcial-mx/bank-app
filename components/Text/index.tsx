@@ -1,5 +1,5 @@
-import { Text as RNText } from 'react-native';
-import { scaleFont } from '@constants/Layouts';
+import { PixelRatio, Text as RNText, useWindowDimensions } from 'react-native';
+
 type TextProps = {
   children: React.ReactNode;
   weight?: 'regular' | 'bold';
@@ -17,6 +17,8 @@ const Text: React.FC<TextProps> = ({
   alignment = 'left',
   style,
 }) => {
+  const scaleFont = (size: number) => size * PixelRatio.getFontScale() * 0.5;
+
   const returnFont = (weight: string | undefined): string => {
     switch (weight) {
       case 'regular':
